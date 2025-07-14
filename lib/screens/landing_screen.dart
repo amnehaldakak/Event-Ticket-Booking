@@ -81,20 +81,6 @@ class _LandingScreenState extends State<LandingScreen> {
                 },
               ),
             ),
-          if (widget.themeModeNotifier != null)
-            ValueListenableBuilder<ThemeMode>(
-              valueListenable: widget.themeModeNotifier!,
-              builder: (context, mode, _) => IconButton(
-                icon: Icon(mode == ThemeMode.dark
-                    ? Icons.dark_mode
-                    : Icons.light_mode),
-                tooltip: 'Toggle Theme',
-                onPressed: () {
-                  widget.themeModeNotifier!.value =
-                      mode == ThemeMode.dark ? ThemeMode.light : ThemeMode.dark;
-                },
-              ),
-            ),
         ],
       ),
       body: ListView.builder(

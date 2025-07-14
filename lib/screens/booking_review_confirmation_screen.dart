@@ -6,8 +6,7 @@ import 'package:event_ticket_booking1/color.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class BookingReviewAndConfirmationScreen extends StatefulWidget {
-  // Remove or make localeNotifier non-final and optional if not used
-  // final ValueNotifier<Locale>? localeNotifier;
+  final ValueNotifier<Locale>? localeNotifier;
 
   final TicketType ticketType;
   final String name;
@@ -30,6 +29,7 @@ class BookingReviewAndConfirmationScreen extends StatefulWidget {
     required this.org,
     required this.promo,
     required this.total,
+    this.localeNotifier,
   }) : super(key: key);
 
   @override
@@ -86,19 +86,15 @@ class _BookingReviewAndConfirmationScreenState
                       const Icon(Icons.check_circle,
                           color: Colors.green, size: 80),
                       const SizedBox(height: 24),
-                      Text(
-                        AppLocalizations.of(context)!.get('booking_confirmed'),
-                        style: const TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: violetBlue3),
-                      ),
+                      const Text('Booking Confirmed!',
+                          style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color: violetBlue3)),
                       const SizedBox(height: 12),
-                      Text(
-                        '${AppLocalizations.of(context)!.get('reference')}: $_referenceNumber',
-                        style:
-                            const TextStyle(fontSize: 18, color: Colors.black),
-                      ),
+                      Text('Reference: $_referenceNumber',
+                          style: const TextStyle(
+                              fontSize: 18, color: Colors.black)),
                       (_referenceNumber != null
                           ? QrImageView(
                               data: _referenceNumber!,
@@ -119,23 +115,19 @@ class _BookingReviewAndConfirmationScreenState
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: Text(
-                          AppLocalizations.of(context)!.get('back_home'),
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
+                        child: const Text('Back to Home',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   )
                 : ListView(
                     children: [
-                      Text(
-                        AppLocalizations.of(context)!.get('please_review'),
-                        style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            color: violetBlue3),
-                      ),
+                      const Text('Please review your booking:',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: violetBlue3)),
                       const SizedBox(height: 16),
                       Container(
                         decoration: BoxDecoration(
@@ -146,43 +138,35 @@ class _BookingReviewAndConfirmationScreenState
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                                '${AppLocalizations.of(context)!.get('booking')}:',
+                            Text('Ticket:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
-                            Text(
-                              AppLocalizations.of(context)!
-                                  .get(widget.ticketType.name),
-                              style: const TextStyle(color: Colors.black),
-                            ),
+                            Text(widget.ticketType.name,
+                                style: const TextStyle(color: Colors.black)),
                             const SizedBox(height: 8),
-                            Text(
-                                '${AppLocalizations.of(context)!.get('full_name')}:',
+                            Text('Name:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
                             Text(widget.name,
                                 style: const TextStyle(color: Colors.black)),
                             const SizedBox(height: 8),
-                            Text(
-                                '${AppLocalizations.of(context)!.get('email')}:',
+                            Text('Email:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
                             Text(widget.email,
                                 style: const TextStyle(color: Colors.black)),
                             const SizedBox(height: 8),
-                            Text(
-                                '${AppLocalizations.of(context)!.get('phone')}:',
+                            Text('Phone:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
                             Text(widget.phone,
                                 style: const TextStyle(color: Colors.black)),
                             const SizedBox(height: 8),
-                            Text(
-                                '${AppLocalizations.of(context)!.get('country')}:',
+                            Text('Country:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
@@ -190,8 +174,7 @@ class _BookingReviewAndConfirmationScreenState
                                 style: const TextStyle(color: Colors.black)),
                             if (widget.job.isNotEmpty) ...[
                               const SizedBox(height: 8),
-                              Text(
-                                  '${AppLocalizations.of(context)!.get('job')}:',
+                              Text('Job Title:',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: violetBlue3)),
@@ -200,8 +183,7 @@ class _BookingReviewAndConfirmationScreenState
                             ],
                             if (widget.org.isNotEmpty) ...[
                               const SizedBox(height: 8),
-                              Text(
-                                  '${AppLocalizations.of(context)!.get('org')}:',
+                              Text('Organization:',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: violetBlue3)),
@@ -210,8 +192,7 @@ class _BookingReviewAndConfirmationScreenState
                             ],
                             if (widget.promo.isNotEmpty) ...[
                               const SizedBox(height: 8),
-                              Text(
-                                  '${AppLocalizations.of(context)!.get('promo')}:',
+                              Text('Promo Code:',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: violetBlue3)),
@@ -219,8 +200,7 @@ class _BookingReviewAndConfirmationScreenState
                                   style: const TextStyle(color: Colors.black)),
                             ],
                             const SizedBox(height: 8),
-                            Text(
-                                '${AppLocalizations.of(context)!.get('total')}:',
+                            Text('Total:',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: violetBlue3)),
@@ -242,11 +222,9 @@ class _BookingReviewAndConfirmationScreenState
                             borderRadius: BorderRadius.circular(12),
                           ),
                         ),
-                        child: Text(
-                          AppLocalizations.of(context)!.get('confirm_booking'),
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
+                        child: const Text('Confirm Booking',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
