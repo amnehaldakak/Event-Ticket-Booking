@@ -35,22 +35,22 @@ class _LandingScreenState extends State<LandingScreen> {
         name: 'ticket_general',
         description: 'desc_general',
         price: 50.0,
-        image: 'image/general.jpg'),
+        image: 'assets/image/general.jpg'),
     TicketType(
         name: 'ticket_student',
         description: 'desc_student',
         price: 30.0,
-        image: 'image/student.jpg'),
+        image: 'assets/image/student.jpg'),
     TicketType(
         name: 'ticket_vip',
         description: 'desc_vip',
         price: 120.0,
-        image: 'image/vip1.jpg'),
+        image: 'assets/image/vip1.jpg'),
     TicketType(
         name: 'ticket_group',
         description: 'desc_group',
         price: 200.0,
-        image: 'image/group.jpg'),
+        image: 'assets/image/group.jpg'),
   ];
 
   int? selectedIndex;
@@ -90,78 +90,80 @@ class _LandingScreenState extends State<LandingScreen> {
           final ticket = ticketTypes[index];
           final isSelected = selectedIndex == index;
 
-          return Card(
-            color: violetBlue2,
-            elevation: 6,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: BorderSide(
-                color: isSelected ? violetBlue3 : Colors.transparent,
-                width: 2,
+          return Center(
+            child: Card(
+              color: violetBlue2,
+              elevation: 6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+                side: BorderSide(
+                  color: isSelected ? violetBlue3 : Colors.transparent,
+                  width: 2,
+                ),
               ),
-            ),
-            margin: const EdgeInsets.symmetric(vertical: 8),
-            child: InkWell(
-              borderRadius: BorderRadius.circular(16),
-              onTap: () {
-                setState(() {
-                  selectedIndex = index;
-                });
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  children: [
-                    Radio<int>(
-                      value: index,
-                      groupValue: selectedIndex,
-                      activeColor: violetBlue3,
-                      onChanged: (value) {
-                        setState(() {
-                          selectedIndex = value;
-                        });
-                      },
-                    ),
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Image.asset(
-                        ticket.image,
-                        height: 60,
-                        width: 60,
-                        fit: BoxFit.cover,
+              margin: const EdgeInsets.symmetric(vertical: 8),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(16),
+                onTap: () {
+                  setState(() {
+                    selectedIndex = index;
+                  });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    children: [
+                      Radio<int>(
+                        value: index,
+                        groupValue: selectedIndex,
+                        activeColor: violetBlue3,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedIndex = value;
+                          });
+                        },
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)!.get(ticket.name),
-                            style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: violetBlue3,
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          ticket.image,
+                          height: 60,
+                          width: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              AppLocalizations.of(context)!.get(ticket.name),
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: violetBlue3,
+                              ),
                             ),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            AppLocalizations.of(context)!
-                                .get(ticket.description),
-                            style: const TextStyle(color: Colors.black),
-                          ),
-                        ],
+                            const SizedBox(height: 4),
+                            Text(
+                              AppLocalizations.of(context)!
+                                  .get(ticket.description),
+                              style: const TextStyle(color: Colors.black),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    Text(
-                      '\$${ticket.price.toStringAsFixed(2)}',
-                      style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black),
-                    ),
-                  ],
+                      const SizedBox(width: 12),
+                      Text(
+                        '\$${ticket.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
